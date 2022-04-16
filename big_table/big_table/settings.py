@@ -27,8 +27,8 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'SECRET_KEY'
+# SECRET_KEY import from env variables
+SECRET_KEY = os.environ.get ('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,11 +82,16 @@ WSGI_APPLICATION = 'big_table.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# USER and PASSWORD import from env variables
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'big_table_db',
+        'USER': os.environ.get ('DB_USER'),
+        'PASSWORD': os.environ.get ('DB_PASS'),
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+        }
 }
 
 
