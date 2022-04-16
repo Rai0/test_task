@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'table.apps.TableConfig',
+    'rest_framework',
+    'djoser',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +59,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+ ]
 
 ROOT_URLCONF = 'big_table.urls'
 
@@ -78,7 +83,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'big_table.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -86,10 +90,10 @@ WSGI_APPLICATION = 'big_table.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'big_table_db',
+        'NAME': 'big_table',
         'USER': os.environ.get ('DB_USER'),
         'PASSWORD': os.environ.get ('DB_PASS'),
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '5432',
         }
 }
@@ -113,6 +117,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8000",
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
