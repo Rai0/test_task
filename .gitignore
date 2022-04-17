@@ -128,6 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-table_app
 # Dont commit migrations
 migrations/
