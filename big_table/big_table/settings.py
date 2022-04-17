@@ -27,8 +27,8 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'SECRET_KEY'
+# SECRET_KEY import from env variables
+SECRET_KEY = os.environ.get ('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    table_app
+    'rest_framework',
+    'djoser',
+    'corsheaders',
     'table.apps.TableConfig',
 ]
 
@@ -56,7 +60,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+ ]
 
 ROOT_URLCONF = 'big_table.urls'
 
@@ -78,15 +84,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'big_table.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# USER and PASSWORD import from env variables
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'big_table',
+        'USER': os.environ.get ('DB_USER'),
+        'PASSWORD': os.environ.get ('DB_PASS'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+        }
 }
 
 
@@ -108,6 +118,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8000",
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
