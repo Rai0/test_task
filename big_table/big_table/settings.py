@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get ('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -46,10 +46,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'djoser',
     'corsheaders',
+    'graphene_django',
     'table.apps.TableConfig',
 ]
+
+GRAPHENE = {
+  'SCHEMA': 'table.schema.schema',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,8 +63,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
+    'django.middleware.security.SecurityMiddleware', 
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
  ]
 
 ROOT_URLCONF = 'big_table.urls'
@@ -90,7 +95,7 @@ WSGI_APPLICATION = 'big_table.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'big_table',
+        'NAME': os.environ.get ('DB_NAME'),
         'USER': os.environ.get ('DB_USER'),
         'PASSWORD': os.environ.get ('DB_PASS'),
         'HOST': 'localhost',
@@ -118,8 +123,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8000",
+    "http://127.0.0.1:8000",
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_METHODS = [
     "DELETE",

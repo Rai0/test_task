@@ -12,9 +12,6 @@ class tabelModel (models.Model):
     class Meta:
         verbose_name = 'Cтрока таблицы'
         verbose_name_plural = 'Cтроки таблицы'
-
-    def get_absolute_url(self):
-        return reverse("tabel_model", kwargs= {"pk": self.pk})
     
     def __str__(self) -> str:
         return self.title
