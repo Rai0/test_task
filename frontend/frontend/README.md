@@ -1,4 +1,4 @@
-# table_vue_frontend
+# frontend
 
 ## Project setup
 ```
