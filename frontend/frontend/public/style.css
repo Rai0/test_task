@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    margin: auto;
+}
+
+table {
+    
+    width: 100 !important;
+}
+
+th, td {
+    display: inline-flex;
+    width: 250px;
+    text-align: left;
+  }

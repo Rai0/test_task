@@ -6,6 +6,6 @@ from table.schema import schema
 
 
 urlpatterns = [
-    path ('api', tableView.as_view (), name= 'api'),
+    path ('table', tableView.as_view (), name= 'table api'),
     path ('graphql', csrf_exempt (GraphQLView.as_view (graphiql= True, schema= schema)))
 ]

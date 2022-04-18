@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'big_table.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'big_table',
+        'NAME': os.environ.get ('DB_NAME'),
         'USER': os.environ.get ('DB_USER'),
         'PASSWORD': os.environ.get ('DB_PASS'),
         'HOST': 'localhost',
@@ -126,7 +126,7 @@ CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:8000",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_METHODS = [
     "DELETE",
