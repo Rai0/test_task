@@ -1,11 +1,10 @@
 body {
     display: flex;
-    margin: auto;
+    justify-content: center;
 }
 
-table {
-    
-    width: 100 !important;
+.table__wrapper {
+    margin-top: 10px;
 }
 
 th, td {
@@ -13,3 +12,33 @@ th, td {
     width: 250px;
     text-align: left;
   }
+
+th {
+    cursor: pointer;
+}
+
+.pagination__wrapper {
+    justify-content: center;
+    display: flex;
+}
+
+.score {
+    color: #fff;
+    background-color: #6c757d;
+    vertical-align: middle;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+button {
+    margin-inline: 10px !important;
+}
+
+th:hover {
+    background: #dee2e6;
+    cursor: pointer;
+}

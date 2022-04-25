@@ -9,16 +9,11 @@ const RecordsList = ({allTableRecords}) => {
             </h1>
         )
     }
-    console.log (allTableRecords)
 
     return (
-        <div>
-            <h1>
-                {allTableRecords.map (record => (<tr><td>{ allTableRecords.title }</td> <td>{ allTableRecords.date }</td> <td>{ allTableRecords.number }</td> <td>{ recallTableRecordsord.distance }</td></tr>))}
-            </h1>
-        </div>
-        
+        <tbody>
+            {allTableRecords.map (record => (<tr><td>{ record.title }</td> <td>{ record.date }</td> <td>{ record.number }</td> <td>{ record.distance }</td></tr>))}
+        </tbody>
     )
 }
 export default RecordsList
-// {/* <td>{ allTableRecords.title }</td> <td>{ allTableRecords.date }</td> <td>{ allTableRecords.number }</td> <td>{ recallTableRecordsord.distance }</td> */}
