@@ -5,7 +5,7 @@ const RecordsList = ({allTableRecords}) => {
     if (!allTableRecords.length) {
         return (
             <h1 style={{textAlign: 'center'}}>
-                Тут нет ни одной записис!
+                Тут нет ни одной записи!
             </h1>
         )
     }
